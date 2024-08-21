@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    background-color: #222;
+    color: #ddd;
+    padding: 1rem;
+}
+
+#install-btn {
+    font-size: 2rem;
+    background-color: #498cd8;
+    padding: 1rem;
+    color: #fff;
+    border-radius: 2rem;
+    margin: 1rem;
+}
