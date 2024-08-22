@@ -4,7 +4,7 @@ const errorColor = "#e24";
 const plugsLoadingStyles = `position:absolute;top:2rem;left:50vw;background:${loadingColor};padding:.5rem;border-radius:9rem;font-size:1rem;font-family:'Helvetica Neue',arial,sans-serif;color:#fff;transform:translate(-50%,0)`;
 
 const varInit = `i="__plugs__";d=document;s="${plugsLoadingStyles}";`;
-const createLoading = `d.body.innerHTML+=\`<div id="\${i}"style="\${s}">Loading plugs...</div>\`;`;
+const createLoading = `d.body.insertAdjacentHTML("beforeend",\`<div id="\${i}"style="\${s}">Loading plugs...</div>\`);`;
 const errorHandler = `e=>{d.querySelector("#"+i).outerHTML=\`<div id="\${i}"style="\${s};background:${errorColor}">Failed to load plugs...</div>\`;throw e}`;
 const loader = `fetch("${page}").then(v=>v.text(),${errorHandler}).then(v=>eval(v))`;
 const script = `${varInit}${createLoading}${loader}`;
