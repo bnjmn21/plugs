@@ -5,9 +5,9 @@ const plugsLoadingStyles = `position:absolute;top:2rem;left:50vw;background:${lo
 
 const varInit = `i="__plugs__";d=document;s="${plugsLoadingStyles}";`;
 const createLoading = `d.body.insertAdjacentHTML("beforeend",\`<div id="\${i}"style="\${s}">Loading plugs...</div>\`);`;
-const errorHandler = `e=>{d.querySelector("#"+i).outerHTML=\`<div id="\${i}"style="\${s};background:${errorColor}">Failed to load plugs...</div>\`;throw e}`;
-const loader = `fetch("${page}").then(v=>v.text(),${errorHandler}).then(v=>eval(v))`;
-const script = `${varInit}${createLoading}${loader}`;
+const errorHandler = `x=e=>{d.querySelector("#"+i).outerHTML=\`<div id="\${i}"style="\${s};background:${errorColor}">Failed to load plugs...</div>\`;setTimeout(_=>d.querySelector("#"+i).remove(),2e3);throw e};`;
+const loader = `fetch("${page}").then(v=>v.text(),x).then(v=>{try{eval(v)}catch(e){x(e)}})`;
+const script = `${varInit}${errorHandler}${createLoading}${loader}`;
 
 console.log(`Loader:\n${script}`);
 
